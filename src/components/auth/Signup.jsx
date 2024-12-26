@@ -11,7 +11,6 @@ import toast from "react-hot-toast";
 import { useMyContext } from "../../store/ContextApi";
 
 const Signup = () => {
-  const apiUrl = "http://localhost:8080";
   const [role, setRole] = useState();
   const [loading, setLoading] = useState(false);
 
@@ -32,9 +31,9 @@ const Signup = () => {
     mode: "onTouched",
   });
 
-  useEffect(() => {
-    setRole("ROLE_USER");
-  }, []);
+  const handleRoleChange = (e) => {
+    setRole(e.target.value);
+  };
 
   const onSubmitHandler = async (data) => {
     const { username, email, password } = data;
@@ -87,7 +86,7 @@ const Signup = () => {
           </p>
           <div className="flex items-center justify-between gap-1 py-5 ">
             <a
-              href={`${apiUrl}/oauth2/authorization/google`}
+              href={`${import.meta.env.VITE_BACKURL}/oauth2/authorization/google`}
               className="flex gap-1 items-center justify-center flex-1 border p-2 shadow-sm shadow-slate-200 rounded-md hover:bg-slate-300 transition-all duration-300"
             >
               <span>
@@ -98,7 +97,7 @@ const Signup = () => {
               </span>
             </a>
             <a
-              href={`${apiUrl}/oauth2/authorization/github`}
+              href={`${import.meta.env.VITE_BACKURL}/oauth2/authorization/github`}
               className="flex gap-1 items-center justify-center flex-1 border p-2 shadow-sm shadow-slate-200 rounded-md hover:bg-slate-300 transition-all duration-300"
             >
               <span>
@@ -145,6 +144,19 @@ const Signup = () => {
             errors={errors}
             min={6}
           />
+
+          <div className="flex space-x-5 my-3">
+            <label className="font-semibold" for="user">Role</label>
+            <div class="role-option">
+              <input type="radio" id="user" name="role" value="user" onChange={handleRoleChange} required />
+              <label for="user">User</label>
+            </div>
+            <div class="role-option">
+              <input type="radio" id="admin" name="role" value="admin" onChange={handleRoleChange} />
+              <label for="admin">Admin</label>
+            </div>
+          </div>
+
         </div>
         <Buttons
           disabled={loading}

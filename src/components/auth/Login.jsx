@@ -96,7 +96,7 @@ const Login = () => {
             </p>
             <div className="flex items-center justify-between gap-1 py-5 ">
               <Link
-                to={`${apiUrl}/oauth2/authorization/google`}
+                to={`${import.meta.env.VITE_BACKURL}/oauth2/authorization/google`}
                 className="flex gap-1 items-center justify-center flex-1 border p-2 shadow-sm shadow-slate-200 rounded-md hover:bg-slate-300 transition-all duration-300"
               >
                 <span>
@@ -107,7 +107,7 @@ const Login = () => {
                 </span>
               </Link>
               <Link
-                to={`${apiUrl}/oauth2/authorization/github`}
+                to={`${import.meta.env.VITE_BACKURL}/oauth2/authorization/github`}
                 className="flex gap-1 items-center justify-center flex-1 border p-2 shadow-sm shadow-slate-200 rounded-md hover:bg-slate-300 transition-all duration-300"
               >
                 <span>
